@@ -14,12 +14,11 @@ html {
     --gray: #808080;
     --light-gray-shade: #F2F0F1;
     --hover-color: #91ADC2;
-    --light-colar: #f08080;
+    --light-color: #f08080;
     --light-gray: #F0F0F0;
     --white: #fff;
+    --dark-mode-bg: #1d2935;
     --poppins-font: "Poppins", sans-serif;
-    /* #232730 */
-    /* #1d2935 */
 }
 
 body {
@@ -112,11 +111,11 @@ input[type="submit"],
 textarea,
 select {
     font-family: var(--poppins-font);
-    border-radius: 25px;
+    border-radius: 8px;
     padding: 8px 12px;
     font-size: 16px;
     width: 100%;
-    border: none;
+    border: 1px solid var(--gray);
     background: var(--light-gray);
 }
 
@@ -137,10 +136,12 @@ input[type="submit"] {
     cursor: pointer;
     width: auto;
     transition: all 0.2s linear 0s;
+    background: var(--secondary);
+    color: var(--white);
 }
 
 input[type="submit"]:hover {
-    background: var(--light-colar);
+    background: var(--light-color);
     color: var(--white);
 }
 
@@ -176,10 +177,13 @@ section {
 }
 
 button {
-    border: none;
-    background: none;
+    background: var(--gray);
     font-family: var(--poppins-font);
     cursor: pointer;
+    padding: 10px 14px;
+    color: var(--white);
+    border: 1px solid var(--white);
+    margin: 0 10px 0 0;
 }
 
 /* inline social icons */
@@ -225,6 +229,11 @@ button {
     content: "\f09b";
 }
 
+body.dark-mode *{
+    background: var(--dark-mode-bg);
+    color: var(--white);
+}
+
 /* header start */
 
 .hgroup-wrap {
@@ -239,7 +248,13 @@ button {
 }
 
 .hgroup-right{
+    width: 83%;
     width: calc(100% - 200px);
+}
+
+nav ul{
+    display: flex;
+    justify-content: end;
 }
 
 nav li {
@@ -248,10 +263,33 @@ nav li {
 }
 
 nav a.active {
-    color: var(--light-colar);
+    color: var(--light-color);
 }
 
 /* header end */
+
+.registration-form-wrap {
+    max-width: 350px;
+    margin: 0 auto;
+    background: var(--light-gray);
+    padding: 20px;
+    border: 1px solid var(--gray);
+    border-radius: 6px;
+}
+
+.registration-form-wrap .input-wrap {
+    margin-bottom: 15px;
+}
+
+.registration-form-wrap input[type="submit"]{
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.registration-form-wrap span a{
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
 
 /* footer start */
 

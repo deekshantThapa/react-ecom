@@ -2,13 +2,24 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
 // style
-import './assets/css/style.css'
+import './assets/Css/Style.css'
 
 // app
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
+// context api
+import MyState from './context/Data/MyState.jsx'
+
+// redux
+import { Provider } from 'react-redux'
+import { store } from './redux/Store.jsx'
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <Provider store={store}>
+      <MyState>
+        <App />
+      </MyState>
+    </Provider>
+  </StrictMode>
+);

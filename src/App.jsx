@@ -1,18 +1,19 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 
 // layouts
-import RootLayout from "./Layouts/RootLayout";
+import RootLayout from "./layouts/RootLayout";
 
 // pages
-import Home from "./pages/home/Home";
-import Order from "./pages/order/Order";
-import Cart from "./pages/cart/Cart";
-import Dashboard from "./pages/admin/dashboard/Dashboard";
-import Contact from "./pages/contact/Contact";
-import NotFound from "./pages/not-found/NotFound";
-
-// context api
-import MyState from "./context/data/myState";
+import Home from "./pages/Home/Home";
+import Order from "./pages/Order/Order";
+import Cart from "./pages/Cart/Cart";
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import Contact from "./pages/Contact/Contact";
+import NotFound from "./pages/NotFound/NotFound";
+import Login from "./pages/Registration/Login";
+import SignUp from "./pages/Registration/SignUp";
+import AddProduct from "./pages/Admin/AddProduct";
+import UpdateProduct from "./pages/Admin/UpdateProduct";
 
 export default function App(){
 
@@ -31,6 +32,14 @@ export default function App(){
 
         <Route path="contact" element={<Contact /> } />
 
+        <Route path="login" element={<Login />} />
+
+        <Route path="signup" element={<SignUp />} />
+
+        <Route path="add-product" element={<AddProduct /> } />
+
+        <Route path="update-product" element={<UpdateProduct /> } />
+
         <Route path="*" element={<NotFound />} />
         
       </Route>
@@ -39,10 +48,6 @@ export default function App(){
   );
 
   return(
-    
-    <MyState>
-      <RouterProvider router={customRouter} />
-    </MyState>
-
+    <RouterProvider router={customRouter} />
   )
 }
