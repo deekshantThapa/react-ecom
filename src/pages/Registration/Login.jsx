@@ -7,18 +7,14 @@ export default function Login() {
         <div className="registration-form-wrap">
           <form action="">
             <div className="input-wrap">
-              <label htmlFor="">Name</label>
-              <input type="text" name="name" id="" />
-            </div>
-            <div className="input-wrap">
               <label htmlFor="">Email</label>
-              <input type="email" name="email" id="" />
+              <input type="email" name="email" id="" required/>
             </div>
             <div className="input-wrap">
               <label htmlFor="">Password</label>
-              <input type="password" name="password" id="" />
+              <input type="password" name="password" id="" required/>
             </div>
-            <input type="submit" value="Login" />
+            <button>Login</button>
           </form>
           <span>Don't have an account? <Link to={'/signup'}>Signup</Link></span>
         </div>

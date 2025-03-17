@@ -20,8 +20,12 @@ export default function myState(props) {
 
   }
 
+  // 2. loader
+
+  const [loading, setLoading] = useState(false);
+
   return (
-  <MyContext.Provider value={{darkMode, themeToggle}}>
+  <MyContext.Provider value={{darkMode, themeToggle, loading, setLoading}}>
       {props.children}
     </MyContext.Provider>
   );
