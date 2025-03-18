@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MyContext from "./MyContext"
+import { Navigate } from "react-router-dom";
 
 export default function myState(props) {
 
@@ -25,8 +26,12 @@ export default function myState(props) {
   const [loading, setLoading] = useState(false);
 
   return (
-  <MyContext.Provider value={{darkMode, themeToggle, loading, setLoading}}>
-      {props.children}
-    </MyContext.Provider>
+  <MyContext.Provider 
+
+    value={{darkMode, themeToggle, loading, setLoading}}>
+
+    {props.children}
+
+  </MyContext.Provider>
   );
 }

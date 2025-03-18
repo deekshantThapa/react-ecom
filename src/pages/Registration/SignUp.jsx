@@ -37,18 +37,19 @@ export default function SignUp() {
         time: Timestamp.now()
       }
 
-      const userRef = collection(fireDB, "users")
-      await addDoc(userRef, user)
-      toast.success("Sign up successful")
-      setLoading(false)
-      setName('')
-      setEmail('')
-      setPassword('')
+      const userRef = collection(fireDB, "users");
+      await addDoc(userRef, user);
+      toast.success("Sign up successful");
+      setLoading(false);
+      setName('');
+      setEmail('');
+      setPassword('');
     }
 
     catch(error){
       console.log(error);
       toast.error("Couldn't sign up")
+      setLoading(false);
     }
 
   }
@@ -76,13 +77,14 @@ export default function SignUp() {
               value={password} onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button>
+            <button className="btn-primary">
               {loading ? <span className="loader"></span> : 'Sign Up' }
             </button>
           </form>
           <span>
             Already have an account? <Link to={"/login"}>Login</Link>
           </span>
+          <span className="back-to-home">Back to <Link to={'/'}>Home</Link></span>
         </div>
       </div>
     </section>

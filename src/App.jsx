@@ -3,10 +3,14 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 // layouts
 import RootLayout from "./layouts/RootLayout";
 
+// protected routes
+import ProtectedRouteForUser from "./components/ProtectedRoute/ProtectedRouteForUser";
+import ProtectedRouteForAdmin from "./components/ProtectedRoute/ProtectedRouteForAdmin"
+
 // pages
 import Home from "./pages/Home/Home";
-import Order from "./pages/Order/Order";
 import Cart from "./pages/Cart/Cart";
+import Order from "./pages/Order/Order";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Contact from "./pages/Contact/Contact";
 import NotFound from "./pages/NotFound/NotFound";
@@ -24,26 +28,43 @@ export default function App(){
 
         <Route index element={<Home />} />
 
-        <Route path="order" element={<Order />} />
+        <Route path="order"
+          element={
+            <ProtectedRouteForUser>
+              <Order />
+            </ProtectedRouteForUser>
+          }
+        />
 
-        <Route path="cart" element={<Cart />} />
+        <Route path="cart"
+          element={
+            <ProtectedRouteForUser>
+              <Cart />
+            </ProtectedRouteForUser>
+          } 
+        />
 
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dashboard" 
+          element={
+            <ProtectedRouteForAdmin>
+              <Dashboard />
+            </ProtectedRouteForAdmin>
+          } 
+        />
 
-        <Route path="contact" element={<Contact /> } />
+        <Route path="add-product" element={<AddProduct />} />
+
+        <Route path="update-product" element={<UpdateProduct />} />
+
+        <Route path="contact" element={<Contact />} />
 
         <Route path="login" element={<Login />} />
 
         <Route path="signup" element={<SignUp />} />
 
-        <Route path="add-product" element={<AddProduct /> } />
-
-        <Route path="update-product" element={<UpdateProduct /> } />
-
         <Route path="*" element={<NotFound />} />
-        
-      </Route>
 
+      </Route>
     )
   );
 

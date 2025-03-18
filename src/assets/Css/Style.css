@@ -85,21 +85,6 @@ a:hover {
   color: var(--hover-color);
 }
 
-.btn-primary {
-  padding: 10px 25px;
-  border-radius: 30px;
-  font-size: 16px;
-  transition: all 0.2s linear 0s;
-  margin-bottom: 10px;
-  background: var(--primary);
-  color: var(--white);
-}
-
-.btn-primary:hover {
-  background: var(--hover-color);
-  color: var(--white);
-}
-
 input[type="text"],
 input[type="password"],
 input[type="number"],
@@ -176,20 +161,20 @@ section {
   margin-bottom: 30px;
 }
 
-button {
+.btn-primary {
   background: var(--secondary);
   font-family: var(--poppins-font);
   cursor: pointer;
   padding: 10px 14px;
   color: var(--white);
   border: 1px solid var(--white);
-  margin: 0 10px 0 0;
   font-size: 16px;
   transition: all 0.3s linear 0s;
 }
 
-button:hover {
+.btn-primary:hover {
   background: var(--primary);
+  color: var(--white);
 }
 
 .registration-form-wrap button {
@@ -292,6 +277,7 @@ section.Toastify {
 nav ul {
   display: flex;
   justify-content: end;
+  align-items: center;
 }
 
 nav li {
@@ -307,7 +293,7 @@ nav a.active {
 
 .registration-form-wrap {
   max-width: 350px;
-  margin: 0 auto;
+  margin: 70px auto 0 auto;
   background: var(--light-gray);
   padding: 20px;
   border: 1px solid var(--gray);
@@ -323,10 +309,20 @@ nav a.active {
   margin-bottom: 15px;
 }
 
+.registration-form-wrap > span{
+  display: block;
+  text-align: center;
+}
+
 .registration-form-wrap span a {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+
+.registration-form-wrap .back-to-home{
+  margin-top: 5px;
+}
+
 
 /* footer start */
 
