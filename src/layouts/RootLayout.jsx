@@ -13,7 +13,7 @@ export default function RootLayout() {
 
   return (
     <>
-    <ToastContainer position="top-center" autoClose={3000} />
+    <ToastContainer position="top-center" autoClose={2000} />
     {!hideLayout && <Header />}
     <main>
       <Outlet />

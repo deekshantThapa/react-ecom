@@ -37,7 +37,7 @@ h5,
 h6 {
   line-height: 1.2;
   margin-bottom: 12px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 h1 {
@@ -153,6 +153,11 @@ section {
   padding: 30px 0;
 }
 
+button{
+  font-size: 16px;
+  font-family: var(--poppins-font);
+}
+
 .entry-header.text-center {
   text-align: center;
 }
@@ -161,18 +166,23 @@ section {
   margin-bottom: 30px;
 }
 
-.btn-primary {
-  background: var(--secondary);
-  font-family: var(--poppins-font);
+.btn-primary, .btn-secondary {
   cursor: pointer;
-  padding: 10px 14px;
-  color: var(--white);
+  padding: 8px 12px;
   border: 1px solid var(--white);
-  font-size: 16px;
   transition: all 0.3s linear 0s;
 }
 
-.btn-primary:hover {
+.btn-primary{
+  background: var(--secondary);
+  color: var(--white);
+}
+
+.btn-secondary{
+  border: 1px solid var(--gray);
+}
+
+.btn-primary:hover, .btn-secondary:hover {
   background: var(--primary);
   color: var(--white);
 }
@@ -323,6 +333,27 @@ nav a.active {
   margin-top: 5px;
 }
 
+/* product add update */
+
+.input-wrap {
+  margin-bottom: 15px;
+}
+
+.product-add-update form {
+  max-width: 450px;
+  margin: auto;
+  background: var(--dark-mode-bg);
+  color: var(--white);
+  padding: 20px;
+  border: 1px solid var(--white);
+  border-radius: 4px;
+}
+
+.product-add-update form .btn-primary{
+  border-radius: 6px;
+  width: 100%;
+  padding: 10px 14px;
+}
 
 /* footer start */
 

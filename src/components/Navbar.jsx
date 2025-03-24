@@ -39,14 +39,17 @@ export default function Navbar() {
         {user?.user?.email === 'admin@gmail.com' && 
         <li><NavLink to="dashboard">Dashboard</NavLink></li>}
 
-        {user?.user?.email && <li><NavLink to="cart">Cart</NavLink></li>}
+        {user?.user?.email && user?.user?.email !== 'admin@gmail.com' && <li><NavLink to="cart">Cart</NavLink></li>}
 
         <li><NavLink to="contact">Contact</NavLink></li>
 
         <li>{user?.user?.email ? 
-          <Link className="btn-primary" onClick={handleLogout}>Logout</Link> : 
-          <Link className="btn-primary" to={"/login"}>Login</Link>}
+          <Link onClick={handleLogout}>Logout</Link> : 
+          <Link to={"/login"}>Login</Link>}
         </li>
+
+        {!user?.user?.email && 
+        <li><Link to={'/signup'} className="btn-primary">Signup</Link></li>}
 
         <li onClick={themeToggle}>
           {darkMode ? <FaMoon size={19} /> : <FaSun size={19} />}
