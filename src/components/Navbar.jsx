@@ -1,12 +1,16 @@
 import { Link, NavLink, useNavigate } from "react-router-dom"
 
-// react icons
-import { FaMoon, FaSun } from "react-icons/fa"
-import { useContext } from "react"
-
 // context api
 import MyContext from "../context/Data/MyContext"
+import { useContext } from "react"
+
+// react toastify
 import { toast } from "react-toastify"
+
+// react icons
+import { FaMoon, FaSun } from "react-icons/fa"
+import { IoCartOutline } from "react-icons/io5"
+import { useSelector } from "react-redux"
 
 export default function Navbar() {
 
@@ -27,6 +31,8 @@ export default function Navbar() {
   // if(!user){
   //   navigate('/login');
   // }
+
+  const cartItems = useSelector(state => state.cart);
 
   return (
     <nav>
@@ -50,6 +56,11 @@ export default function Navbar() {
 
         {!user?.user?.email && 
         <li><Link to={'/signup'} className="btn-primary">Signup</Link></li>}
+
+        <li>
+          <IoCartOutline size={25} />
+          <span>{cartItems.length}</span>
+        </li>
 
         <li onClick={themeToggle}>
           {darkMode ? <FaMoon size={19} /> : <FaSun size={19} />}

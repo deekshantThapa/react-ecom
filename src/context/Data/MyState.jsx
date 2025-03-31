@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import MyContext from "./MyContext"
 import { fireDB } from "../../firebase/FirebaseConfig";
-import { addDoc, collection, doc, onSnapshot, orderBy, query, QuerySnapshot, Timestamp } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, QuerySnapshot, setDoc, Timestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function myState(props) {
 
@@ -28,7 +28,7 @@ export default function myState(props) {
 
   const [loading, setLoading] = useState(false);
 
-  // 3. Products work around
+  // 3. Products work around for Admin
 
   const [products, setProducts] = useState({
     title: null,
@@ -115,14 +115,63 @@ export default function myState(props) {
   }
 
   useEffect(() => {
-    getProduct()
-  }, [])
+    getProduct();
+  }, []);
+
+  // c. Updating and Deleting product work around
+
+  const handleEdit = (item) => {
+    setProducts(item);
+  };
+
+  // i. Update Product
+  
+  const updateProduct = async (e, item) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    try {
+      await setDoc(doc(fireDB, 'products', products.id), products);
+      toast.success('Product updated successfully');
+
+      // for getting instant updated product
+      getProduct();
+
+      setLoading(false);
+    }
+
+    catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
+
+  // ii. Delete product
+
+  const deleteProduct = async (item) => {
+
+    setLoading(true);
+
+    try {
+      
+      await deleteDoc(doc(fireDB, 'products', item.id));
+      toast.success('Product deleted successfuly');
+      getProduct();
+      setLoading(false);
+    }
+    
+    catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
 
   return (
 
   <MyContext.Provider 
 
-    value={{darkMode, themeToggle, loading, setLoading, products, setProducts, addProduct, product, getProduct}}>
+    value={{darkMode, themeToggle, loading, setLoading, products, setProducts, addProduct, product, getProduct, handleEdit, updateProduct, deleteProduct}}>
 
     {props.children}
 

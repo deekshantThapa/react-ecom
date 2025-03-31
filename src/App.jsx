@@ -14,8 +14,8 @@ import Order from "./pages/Order/Order";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Contact from "./pages/Contact/Contact";
 import NotFound from "./pages/NotFound/NotFound";
-import Login from "./pages/Registration/Login";
-import SignUp from "./pages/Registration/SignUp";
+import Login from "./pages/Authentication/Login";
+import SignUp from "./pages/Authentication/SignUp";
 import AddProduct from "./pages/Admin/AddProduct";
 import UpdateProduct from "./pages/Admin/UpdateProduct";
 

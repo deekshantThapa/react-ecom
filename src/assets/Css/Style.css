@@ -156,6 +156,21 @@ section {
 button{
   font-size: 16px;
   font-family: var(--poppins-font);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s linear 0s;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--gray);
+}
+
+th, td {
+  text-align: left;
 }
 
 .entry-header.text-center {
@@ -293,6 +308,13 @@ nav ul {
 nav li {
   display: inline-block;
   margin: 0 8px;
+  position: relative;
+}
+
+nav li span {
+  position: absolute;
+  top: -2px;
+  right: -8px;
 }
 
 nav a.active {
@@ -355,6 +377,57 @@ nav a.active {
   padding: 10px 14px;
 }
 
+.admin{
+  margin-bottom: 20px;
+}
+
+.admin-product-table td button, .admin-product-table a span {
+  font-size: 20px;
+}
+
+.admin-product-table td button {
+  margin-left: 10px;
+}
+
+.admin-product-table td button:hover{
+  color: var(--light-color);
+}
+
+.admin-product-table th, .admin-product-table td {
+  padding: 12px;
+}
+
+.admin-product-table th {
+  background: var(--gray);
+  color: var(--white);
+}
+
+.admin-product-table td {
+  border-bottom: 1px solid var(--gray);
+}
+
+.admin-product-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-product-table td img {
+  max-width: 80px;
+}
+
+.admin-product-table .loader-wrap {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.admin-product-table .loader-wrap .loader{
+  width: 45px;
+  height: 45px;
+}
+
+.admin-product-table .loader-wrap p{
+  margin-bottom: 0;
+}
+
 /* footer start */
 
 .site-footer {
@@ -411,3 +484,24 @@ nav a.active {
 }
 
 /* contact page end */
+
+/* homepage */
+
+.products-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.product{
+  width: 20%;
+  margin: 0 15px 15px 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 8px;
+  padding: 15px;
+}
+
+.product img {
+  height: 200px;
+  object-fit: contain;
+  object-position: center;
+}
