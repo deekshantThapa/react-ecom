@@ -33,6 +33,8 @@ export default function Navbar() {
   // }
 
   const cartItems = useSelector(state => state.cart);
+  // console.log(cartItems);
+  
 
   return (
     <nav>
@@ -57,10 +59,25 @@ export default function Navbar() {
         {!user?.user?.email && 
         <li><Link to={'/signup'} className="btn-primary">Signup</Link></li>}
 
-        <li>
+        {user?.user?.email && 
+          <li>
           <IoCartOutline size={25} />
           <span>{cartItems.length}</span>
-        </li>
+          {/* <div className="header-cart">
+            {cartItems &&
+              cartItems.map((item, index) => {
+                const [title, imageUrl] = item;
+
+                return(
+                  <div className="cart-item-info">
+                    
+                  </div>
+                )
+              })
+            }
+          </div> */}
+          </li>
+        }
 
         <li onClick={themeToggle}>
           {darkMode ? <FaMoon size={19} /> : <FaSun size={19} />}

@@ -1,30 +1,28 @@
 import { useContext, useEffect } from "react"
 import myContext from "../../context/Data/MyContext"
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/CartSlice";
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export default function Home() {
 
   const context = useContext(myContext);
   const {product, loading} = context;
 
-  // using redux to add product
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
 
-  const dispatch = useDispatch();
-  const cartItems = useSelector(state => state.cart);
-  console.log(cartItems);
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', 'product-images');
+    data.append('cloud_name', 'davl2avhp');
 
-  const addCart = (product) => {
-    dispatch(addToCart(product));
-    toast.success('Added to cart');
+    const response = await fetch('https://api.cloudinary.com/v1_1/davl2avhp/image/upload', {
+      method: "POST",
+      body: data
+    })
+
+    const uploadedImageUrl = await response.json();
+    console.log(uploadedImageUrl.url);
   }
-
-  // storing value in local storage
-  
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-  }, [cartItems]);
 
   return (
     <>
@@ -33,30 +31,38 @@ export default function Home() {
           <h2 className="entry-title">All Products</h2>
           {loading && (
             <div className="loader-wrap">
-              <span className="loader"></span>
-              <p>Fetching products from firebase</p>
+              <span className="loader loader-big"></span>
+              <p>Fetching products</p>
             </div>
           )}
           <div className="products-wrap">
             {product &&
               product.map((item, index) => {
-                const { title, price, imageUrl } = item;
+                const { title, price, imageUrl, id } = item;
 
                 return (
                   <div className="product" key={index}>
-                    <img src={imageUrl} alt="" />
-                    <h4>{title}</h4>
-                    <p>{price} $</p>
-                    <button
-                      className="btn-primary"
-                      onClick={() => addCart(item)}
-                    >
-                      Add to cart
-                    </button>
+                    <Link to={`product-detail/${id}`}>
+                      <figure>
+                        <img src={imageUrl} alt="" />
+                      </figure>
+                      <h5>
+                        {title.length > 30 ? title.substring(0, 30) + "..." : title}
+                      </h5>
+                      <p>{price} $</p>
+                    </Link>
                   </div>
                 );
               })}
           </div>
+        </div>
+      </section>
+
+      <section className="image-upload">
+        <div className="container">
+          <h3>Upload image</h3>
+          {loading && <p>loading</p>}
+          <input type="file" name="" id="" onChange={handleFileUpload}/>
         </div>
       </section>
     </>

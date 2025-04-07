@@ -23,7 +23,7 @@ export default function Login() {
     try {
 
       const login = await signInWithEmailAndPassword(auth, email, password);
-      console.log(login);
+      // console.log(login);
 
       // Store user in localStorage
       localStorage.setItem('user', JSON.stringify(login));

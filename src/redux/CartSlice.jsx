@@ -12,7 +12,18 @@ const cartSlice = createSlice({
     reducers: {
 
         addToCart(state, action){
-            state.push(action.payload)
+            const existingItem = state.find(item => item.id === action.payload.id);
+
+            if (existingItem) {
+                // Increase quantity
+                existingItem.quantity += 1;
+            } 
+            else {
+                // Add new item with quantity 1
+                state.push({ ...action.payload, quantity: 1 });
+            }
+
+            // localStorage.setItem("cart", JSON.stringify(state));
         },
 
         // so whatever products we add in cart, it gets pushed

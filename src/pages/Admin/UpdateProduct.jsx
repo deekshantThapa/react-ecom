@@ -34,10 +34,13 @@ export default function UpdateProduct() {
           </div>
           <div className="input-wrap">
             <label htmlFor="">Product Category</label>
-            <input type="text" name="text" id="" required
-            value={products.category}
-            onChange={(e) => setProducts({...products, category: e.target.value})}
-            />
+            <select required
+            value={products.category} onChange={(e) => setProducts({...products, category: e.target.value})}
+            >
+              <option value="">Choose Category</option>
+              <option value="electronics">Electronics</option>
+              <option value="clothes">Clothes</option>
+            </select>
           </div>
           <div className="input-wrap">
             <label htmlFor="">Product Description</label>

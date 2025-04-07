@@ -18,6 +18,7 @@ import Login from "./pages/Authentication/Login";
 import SignUp from "./pages/Authentication/SignUp";
 import AddProduct from "./pages/Admin/AddProduct";
 import UpdateProduct from "./pages/Admin/UpdateProduct";
+import ProductDetail from "./pages/SingleProductDetail/SingleProductDetail";
 
 export default function App(){
 
@@ -26,7 +27,13 @@ export default function App(){
 
       <Route path="/" element={<RootLayout />}>
 
-        <Route index element={<Home />} />
+        {/* Authentication */}
+
+        <Route path="login" element={<Login />} />
+
+        <Route path="signup" element={<SignUp />} />
+
+        {/* Protected Routes For User and Admin */}
 
         <Route path="order"
           element={
@@ -52,15 +59,17 @@ export default function App(){
           } 
         />
 
+        {/* Normal Routes */}
+
+        <Route index element={<Home />} />
+
         <Route path="add-product" element={<AddProduct />} />
 
         <Route path="update-product" element={<UpdateProduct />} />
 
+        <Route path="product-detail/:id" element={<ProductDetail />} />
+
         <Route path="contact" element={<Contact />} />
-
-        <Route path="login" element={<Login />} />
-
-        <Route path="signup" element={<SignUp />} />
 
         <Route path="*" element={<NotFound />} />
 

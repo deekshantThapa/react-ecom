@@ -28,7 +28,7 @@ export default function myState(props) {
 
   const [loading, setLoading] = useState(false);
 
-  // 3. Products work around for Admin
+  // --------------- 3. Products work around for Admin -----------------
 
   const [products, setProducts] = useState({
     title: null,
@@ -47,6 +47,34 @@ export default function myState(props) {
     )
   })
 
+  // Upload Image to Cloudinary
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+
+    setLoading(true);
+
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', 'product-images');
+    data.append('cloud_name', 'davl2avhp');
+
+    const response = await fetch('https://api.cloudinary.com/v1_1/davl2avhp/image/upload', {
+      method: "POST",
+      body: data
+    })
+
+    const uploadedImageUrl = await response.json();
+
+    // setting products
+    setProducts((prev) => ({
+      ...prev,
+      imageUrl: uploadedImageUrl.secure_url
+    }), setLoading(false));
+
+    // console.log(uploadedImageUrl.url);
+  }
+
   // a. Adding product
 
   const addProduct = async (e) => {
@@ -61,6 +89,8 @@ export default function myState(props) {
       const productRef = collection(fireDB, 'products');
       await addDoc(productRef, products);
       toast.success("Product added in database");
+
+      // console.log(products);
 
       // calling 'getProduct' here function to instantly show the product in frontend once admin add the product
       getProduct();
@@ -170,8 +200,7 @@ export default function myState(props) {
   return (
 
   <MyContext.Provider 
-
-    value={{darkMode, themeToggle, loading, setLoading, products, setProducts, addProduct, product, getProduct, handleEdit, updateProduct, deleteProduct}}>
+    value={{darkMode, themeToggle, loading, setLoading, products, setProducts, addProduct, product, getProduct, handleEdit, updateProduct, deleteProduct, handleFileUpload}}>
 
     {props.children}
 
