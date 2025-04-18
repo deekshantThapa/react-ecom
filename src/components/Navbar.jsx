@@ -35,7 +35,6 @@ export default function Navbar() {
   const cartItems = useSelector(state => state.cart);
   // console.log(cartItems);
   
-
   return (
     <nav>
       <ul>
@@ -59,7 +58,7 @@ export default function Navbar() {
         {!user?.user?.email && 
         <li><Link to={'/signup'} className="btn-primary">Signup</Link></li>}
 
-        {user?.user?.email && 
+        {user?.user?.email && user?.user?.email !== 'admin@gmail.com' && 
           <li>
           <IoCartOutline size={25} />
           <span>{cartItems.length}</span>

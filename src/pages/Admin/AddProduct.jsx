@@ -6,7 +6,6 @@ export default function AddProduct() {
   const context = useContext(myContext);
   const {products, setProducts, addProduct, loading, handleFileUpload} = context;
   
-
   return (
     <section className="product-add-update">
       <div className="container">
@@ -50,7 +49,7 @@ export default function AddProduct() {
               accept="image/*"
               onChange={handleFileUpload}
             />
-            {!loading && <span className="loader"></span> }
+            {loading && <span className="loader"></span> }
           </div>
           <div className="input-wrap">
             <label htmlFor="">Product Category</label>

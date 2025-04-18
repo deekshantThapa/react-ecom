@@ -37,7 +37,7 @@ export default function Login() {
 
     catch (error) {
       console.log(error);
-      toast.error("Couldn't log in")
+      toast.error("Couldn't log in");
     }
 
     finally{

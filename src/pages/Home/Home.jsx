@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import myContext from "../../context/Data/MyContext"
 import { Link } from "react-router-dom";
 
@@ -7,28 +7,29 @@ export default function Home() {
   const context = useContext(myContext);
   const {product, loading} = context;
 
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-
-    const data = new FormData();
-    data.append('file', file);
-    data.append('upload_preset', 'product-images');
-    data.append('cloud_name', 'davl2avhp');
-
-    const response = await fetch('https://api.cloudinary.com/v1_1/davl2avhp/image/upload', {
-      method: "POST",
-      body: data
-    })
-
-    const uploadedImageUrl = await response.json();
-    console.log(uploadedImageUrl.url);
-  }
-
   return (
     <>
+
+      <section className="banner">
+        <div className="container">
+          <div className="banner-content-wrap">
+            <div className="banner-content">
+              <header className="entry-header">
+                <h3 className="entry-sub-title">New Arrival</h3>
+                <h2 className="entry-title">Discover Our New Collection</h2>
+              </header>
+              <p>Browse variety of furnitures we have suitable for your living, dining and bedroom </p>
+              <button className="btn-primary">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="all-products">
         <div className="container">
-          <h2 className="entry-title">All Products</h2>
+          <header className="entry-header">
+            <h2 className="entry-title">Our Products</h2>
+          </header>
           {loading && (
             <div className="loader-wrap">
               <span className="loader loader-big"></span>
@@ -58,13 +59,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="image-upload">
-        <div className="container">
-          <h3>Upload image</h3>
-          {loading && <p>loading</p>}
-          <input type="file" name="" id="" onChange={handleFileUpload}/>
-        </div>
-      </section>
     </>
   );
 }

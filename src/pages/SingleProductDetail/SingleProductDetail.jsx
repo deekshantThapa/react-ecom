@@ -54,7 +54,7 @@ export default function SingleProductDetail() {
     else if (user?.user?.email) {
       dispatch(addToCart(product));
       toast.success("Added to cart");
-      console.log(product.title, product.id);
+      // console.log(product.title, product.id);
     }
     else {
       toast.error("Login to add products");
@@ -66,6 +66,7 @@ export default function SingleProductDetail() {
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
+  
 
   return (
     <section className="single-product-detail">

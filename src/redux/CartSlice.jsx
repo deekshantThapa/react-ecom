@@ -6,8 +6,8 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
 
-    // reducers is a type of function.
-    // we can create other different functions inside reducers
+    // NOTE: reducers is a type of function.
+    // -- we can create other different functions inside reducers
 
     reducers: {
 
@@ -23,11 +23,10 @@ const cartSlice = createSlice({
                 state.push({ ...action.payload, quantity: 1 });
             }
 
-            // localStorage.setItem("cart", JSON.stringify(state));
         },
 
-        // so whatever products we add in cart, it gets pushed
-        // payload comes inside action. payload can be anything
+        // -- so whatever products we add in cart, it gets pushed
+        // -- payload comes inside action. payload can be anything
 
         deleteFromCart(state, action){
             return state.filter(item => item.id !== action.payload.id)

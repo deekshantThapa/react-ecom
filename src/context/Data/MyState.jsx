@@ -66,7 +66,7 @@ export default function myState(props) {
 
     const uploadedImageUrl = await response.json();
 
-    // setting products
+    // setting imageUrl to product
     setProducts((prev) => ({
       ...prev,
       imageUrl: uploadedImageUrl.secure_url

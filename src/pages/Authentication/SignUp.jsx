@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { auth, fireDB } from "../../firebase/FirebaseConfig";
@@ -27,6 +27,11 @@ export default function SignUp() {
 
       const users = await createUserWithEmailAndPassword(auth, email, password);
       // console.log(users);
+
+      // set display name in firebase auth
+      await updateProfile(users.user, {
+        displayName: name
+      });
 
       // creating a user and storing it in firestore database
 
