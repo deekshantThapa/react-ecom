@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 
-import siteLogoImg from "../assets/Images/site-logo.png";
-
 export default function Header() {
 
   const user = JSON.parse(localStorage.getItem('user'));
@@ -13,7 +11,7 @@ export default function Header() {
         <div className="hgroup-wrap">
           <div className="site-branding">
             <Link to='/'>
-              <img src={siteLogoImg} alt="" />
+              Shop.co
             </Link>
           </div>
           <div className="hgroup-right">

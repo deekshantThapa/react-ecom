@@ -59,7 +59,7 @@ export default function Dashboard() {
             {loading && 
               <div className="loader-wrap">
                 <span className="loader"></span>
-                <p>Fetching products from firebase</p>
+                <p>Fetching products</p>
               </div> 
             }
           </div>

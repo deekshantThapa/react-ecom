@@ -10,21 +10,6 @@ export default function Home() {
   return (
     <>
 
-      <section className="banner">
-        <div className="container">
-          <div className="banner-content-wrap">
-            <div className="banner-content">
-              <header className="entry-header">
-                <h3 className="entry-sub-title">New Arrival</h3>
-                <h2 className="entry-title">Discover Our New Collection</h2>
-              </header>
-              <p>Browse variety of furnitures we have suitable for your living, dining and bedroom </p>
-              <button className="btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="all-products">
         <div className="container">
           <header className="entry-header">
