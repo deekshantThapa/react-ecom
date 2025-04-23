@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { saveCartItem, deleteCartItem } from "../firebase/FirebaseCart";
 
-const initialState = JSON.parse(localStorage.getItem('cart')) ?? [];
+const initialState = [];
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -13,27 +14,49 @@ const cartSlice = createSlice({
 
         addToCart(state, action){
             const existingItem = state.find(item => item.id === action.payload.id);
+            let updatedItem;
 
             if (existingItem) {
                 // Increase quantity
-                existingItem.quantity += 1;
+                existingItem.quantity += action.payload.quantity || 1;
+                updatedItem = existingItem;
             } 
             else {
                 // Add new item with quantity 1
-                state.push({ ...action.payload, quantity: 1 });
+                const newItem = { ...action.payload, quantity: action.payload.quantity || 1 };
+                state.push(newItem);
+                updatedItem = newItem;
+            }
+
+            const user = JSON.parse(localStorage.getItem("user"));
+            const userId = user?.user?.uid;
+            if (userId) {
+                saveCartItem(userId, updatedItem);
             }
 
         },
 
         // -- so whatever products we add in cart, it gets pushed
-        // -- payload comes inside action. payload can be anything
+        // -- 'payload' comes inside action. 'payload' can be anything
 
-        deleteFromCart(state, action){
-            return state.filter(item => item.id !== action.payload.id)
+        deleteFromCart(state, action) {
+            const newState = state.filter(item => item.id !== action.payload.id);
+      
+            const user = JSON.parse(localStorage.getItem("user"));
+            const userId = user?.user?.uid;
+            if (userId) {
+              deleteCartItem(userId, action.payload.id);
+            }
+      
+            return newState;
+        },
+
+        setCartFromFirebase(state, action) {
+            return action.payload;
         }
     }
 })
 
-export const {addToCart, deleteFromCart} = cartSlice.actions
+export const {addToCart, deleteFromCart, setCartFromFirebase} = cartSlice.actions
 
 export default cartSlice.reducer

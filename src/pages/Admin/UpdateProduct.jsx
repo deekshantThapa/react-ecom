@@ -38,8 +38,8 @@ export default function UpdateProduct() {
             value={products.category} onChange={(e) => setProducts({...products, category: e.target.value})}
             >
               <option value="">Choose Category</option>
-              <option value="electronics">Electronics</option>
-              <option value="clothes">Clothes</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Clothing">Clothing</option>
             </select>
           </div>
           <div className="input-wrap">

@@ -97,10 +97,6 @@ export default function myState(props) {
 
       setLoading(false);
       
-      // setTimeout(() => {
-      //   navigate('/dashboard');
-      // }, 2000)
-      
     } 
     catch (error) {
       console.log(error);

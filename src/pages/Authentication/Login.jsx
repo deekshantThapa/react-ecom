@@ -25,7 +25,7 @@ export default function Login() {
       const login = await signInWithEmailAndPassword(auth, email, password);
       // console.log(login);
 
-      // Store user in localStorage
+      // Store user in local storage
       localStorage.setItem('user', JSON.stringify(login));
 
       // show toast success message

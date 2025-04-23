@@ -1,13 +1,19 @@
 import { MdOutlineDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteFromCart } from "../../redux/CartSlice";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import myContext from "../../context/Data/MyContext";
 
 export default function Cart() {
+  
+  const navigate = useNavigate();
+  const context = useContext(myContext);
+  const { loading } = context;
 
   const cartItems = useSelector(state => state.cart);
+
   // console.log(cartItems);
 
   const dispatch = useDispatch();
@@ -27,7 +33,6 @@ export default function Cart() {
   useEffect(() => {
     let amt = 0;
     cartItems.forEach(cartItem => {
-      // amt = amt + parseInt(cartItem.price)
       amt += parseInt(cartItem.price * cartItem.quantity);
     });
     setTotalAmount(amt);
@@ -35,7 +40,7 @@ export default function Cart() {
   }, [cartItems])
 
   // add shipping amount
-  const shipping = parseInt(50);
+  const shipping = parseInt(30);
 
   // grand total amount
   const grandTotal = totalAmount + shipping;
@@ -46,17 +51,23 @@ export default function Cart() {
         <div className="container">
           <div className="cart-wrap">
             <div className="cart-items">
-              {cartItems.length > 0 ?
+              {loading ? 
+              (<div className="loader-wrap">
+               <span className="loader loader-big"></span>
+               <p>Loading cart...</p>
+              </div>)
+              :
+              cartItems.length > 0 ?
                 cartItems.map((item, index) => {
                   const {title, imageUrl, price, description, quantity} = item;
 
                   return (
                     <div className="cart-item" key={index}>
                       <div className="image-wrap">
-                        <figure>
+                        <figure onClick={() => navigate(`/product-detail/${item.id}`)} >
                           <img src={imageUrl} alt="" />
                         </figure>
-                        <span className="quantity">Quantity: X {item.quantity}</span>
+                        <span className="quantity">Quantity: X {quantity}</span>
                       </div>
                       <div className="cart-detail">
                         <h3>{title}</h3>

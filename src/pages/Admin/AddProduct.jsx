@@ -39,10 +39,6 @@ export default function AddProduct() {
           </div>
           <div className="input-wrap">
             <label htmlFor="">Product Image</label>
-            {/* <input type="text" name="text" id="" required
-            value={products.imageUrl}
-            onChange={(e) => setProducts({...products, imageUrl: e.target.value})}
-            /> */}
             <input
               type="file"
               required
@@ -62,7 +58,7 @@ export default function AddProduct() {
             >
               <option value="">Choose Category</option>
               <option value="Electronics">Electronics</option>
-              <option value="Clothes">Clothes</option>
+              <option value="Clothing">Clothing</option>
             </select>
           </div>
           <div className="input-wrap">

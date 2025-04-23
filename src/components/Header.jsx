@@ -20,7 +20,7 @@ export default function Header() {
         </div>
         {user && 
           <div className="user-log-status">
-            <span>Logged in as: {user.user.displayName}</span>
+            Logged in as: <span>{user.user.displayName}</span>
           </div>
         }
       </div>

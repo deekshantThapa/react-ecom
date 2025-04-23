@@ -24,7 +24,6 @@ export default function SignUp() {
     try{
 
       // 'createUserWithEmailAndPassword' -- firebase method 
-
       const users = await createUserWithEmailAndPassword(auth, email, password);
       // console.log(users);
 

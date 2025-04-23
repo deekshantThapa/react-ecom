@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom"
 
 // context api
 import MyContext from "../context/Data/MyContext"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 
 // react toastify
 import { toast } from "react-toastify"
@@ -10,30 +10,41 @@ import { toast } from "react-toastify"
 // react icons
 import { FaMoon, FaSun } from "react-icons/fa"
 import { IoCartOutline } from "react-icons/io5"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { getCartItems } from "../firebase/FirebaseCart"
+import { setCartFromFirebase } from "../redux/CartSlice"
 
 export default function Navbar() {
 
   const context = useContext(MyContext)
   const {darkMode, themeToggle} = context;
 
-  // handling log out
-
+  // handling log out for user
   const user = JSON.parse(localStorage.getItem('user')); 
-
-  // const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem('user');
     toast.info("Log out successfull");
   }
 
-  // if(!user){
-  //   navigate('/login');
-  // }
-
   const cartItems = useSelector(state => state.cart);
-  // console.log(cartItems);
+
+  // fetching the status of user cart from firebase after they log in and showing it
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    const fetchCart = async () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user?.user?.uid;
+  
+      if (userId) {
+        const firebaseCart = await getCartItems(userId);
+        dispatch(setCartFromFirebase(firebaseCart));
+      }
+    };
+  
+    fetchCart();
+  }, []);
   
   return (
     <nav>
