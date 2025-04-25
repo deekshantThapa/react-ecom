@@ -50,16 +50,18 @@ export default function Navbar() {
     <nav>
       <ul>
 
-        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to={'/'}>Home</NavLink></li>
 
-        {user?.user?.email &&  <li><NavLink to="order">Order</NavLink></li>}
+        <li><NavLink to={'shop'}>Shop</NavLink></li>
+
+        {user?.user?.email &&  <li><NavLink to={'order'}>Order</NavLink></li>}
         
         {user?.user?.email === 'admin@gmail.com' && 
         <li><NavLink to="dashboard">Dashboard</NavLink></li>}
 
-        {user?.user?.email && user?.user?.email !== 'admin@gmail.com' && <li><NavLink to="cart">Cart</NavLink></li>}
+        {user?.user?.email && user?.user?.email !== 'admin@gmail.com' && <li><NavLink to={'cart'}>Cart</NavLink></li>}
 
-        <li><NavLink to="contact">Contact</NavLink></li>
+        <li><NavLink to={'contact'}>Contact</NavLink></li>
 
         <li>{user?.user?.email ? 
           <Link onClick={handleLogout}>Logout</Link> : 

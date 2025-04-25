@@ -1,51 +1,52 @@
-import { useContext, useState } from "react"
-import myContext from "../../context/Data/MyContext"
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
 
-  const context = useContext(myContext);
-  const {product, loading} = context;
+  // define product categories
+  const productCategories = [
+    {
+      title: 'Electronics',
+      image: '/category-img/electronics.jpg'
+    },
+    {
+      title: 'Clothing',
+      image: '/category-img/clothing.jpg'
+    }
+  ];
 
-  // filter products
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const navigate = useNavigate();
 
   return (
     <>
 
-      <section className="all-products">
+      <section className="home">
         <div className="container">
           <header className="entry-header">
-            <h2 className="entry-title">Our Products</h2>
+            <h2 className="entry-title">Browse By Category</h2>
           </header>
-          <div className="filter-category">
-            <h3>Filter by Category</h3>
-            <button
-            onClick={() => setSelectedCategory('All')}
-            className={`btn-secondary ${selectedCategory === 'All' ? 'active' : ''}`}
-            >
-              All
-            </button>
-            <button
-            onClick={() => setSelectedCategory('Electronics')}
-            className={`btn-secondary ${selectedCategory === 'Electronics' ? 'active' : ''}`}
-            >
-              Electronics
-            </button>
-            <button
-            onClick={() => setSelectedCategory('Clothing')}
-            className={`btn-secondary ${selectedCategory === 'Clothing' ? 'active' : ''}`}
-            >
-              Clothing
-            </button>
+          <div className="category-item-list">
+            {productCategories.map((category, index) => (
+              <div className="category-item"
+                key={index}
+                onClick={() => navigate(`/shop?category=${category.title}`)}
+              >
+                <figure>
+                  <img src={category.image} alt="" />
+                </figure>
+                <h4 className="entry-title">{category.title}</h4>
+              </div>
+            ))}
           </div>
-          {loading && (
-            <div className="loader-wrap">
-              <span className="loader loader-big"></span>
-              <p>Fetching products</p>
-            </div>
-          )}
-          <div className="products-wrap">
+        </div>
+      </section>
+
+    </>
+  );
+}
+
+
+
+{/* <div className="products-wrap">
             {product &&
               product.filter(item => 
                 selectedCategory === 'All' ? true : item.category === selectedCategory
@@ -62,15 +63,9 @@ export default function Home() {
                       <h5>
                         {title.length > 30 ? title.substring(0, 30) + "..." : title}
                       </h5>
-                      <p>{price} $</p>
+                      <span>{price} $</span>
                     </Link>
                   </div>
                 );
               })}
-          </div>
-        </div>
-      </section>
-
-    </>
-  );
-}
+</div> */}
