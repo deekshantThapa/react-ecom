@@ -54,7 +54,7 @@ export default function Navbar() {
 
         <li><NavLink to={'shop'}>Shop</NavLink></li>
 
-        {user?.user?.email &&  <li><NavLink to={'order'}>Order</NavLink></li>}
+        {/* {user?.user?.email &&  <li><NavLink to={'order'}>Order</NavLink></li>} */}
         
         {user?.user?.email === 'admin@gmail.com' && 
         <li><NavLink to="dashboard">Dashboard</NavLink></li>}

@@ -15,7 +15,11 @@ export default function Shop() {
         <section className="category-products">
             <div className="container">
                 <header className="entry-header">
-                    <h3 className="entry-title">{selectedCategory}</h3>
+                    {selectedCategory ? 
+                        <h3 className="entry-title">{selectedCategory}</h3>
+                        :
+                        <h3 className="entry-title">All Products</h3>
+                    }
                 </header>
                 {loading ? (
                     <div className="loader-wrap">
@@ -26,7 +30,12 @@ export default function Shop() {
                     <div className="products-wrap">
                     {product &&
                         product
-                        .filter((item) => item.category === selectedCategory)
+                        .filter((item) => {
+                            if(selectedCategory){
+                                return item.category === selectedCategory; 
+                            }
+                            return true;
+                        })
                         .map((item, index) => {
                             const { title, price, imageUrl, id } = item;
 
@@ -48,7 +57,8 @@ export default function Shop() {
                                 </Link>
                             </div>
                             );
-                        })}
+                        })
+                    }
                     </div>
                 )}
             </div>

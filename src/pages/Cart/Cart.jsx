@@ -64,7 +64,7 @@ export default function Cart() {
                   return (
                     <div className="cart-item" key={index}>
                       <div className="image-wrap">
-                        <figure onClick={() => navigate(`/product-detail/${item.id}`)} >
+                        <figure onClick={() => navigate(`/shop/product-detail/${item.id}`)} >
                           <img src={imageUrl} alt="" />
                         </figure>
                         <span className="quantity">Quantity: X {quantity}</span>
@@ -83,7 +83,7 @@ export default function Cart() {
                 :
                 <div className="empty-cart">
                   <h4>Your cart is empty</h4>
-                  <p>Go to <Link to={'/'}>Homepage</Link> to add products</p>
+                  <p>Go to <Link to={'/shop'}>Shop</Link> page to add products</p>
                 </div>
               }
             </div>
@@ -100,7 +100,9 @@ export default function Cart() {
                   <h6>Total</h6>
                   {cartItems.length > 0 ? <span>{grandTotal} $</span> : <span>0 $</span> }
                 </div>
-                <button className="btn-primary">Buy Now</button>
+                {totalAmount > 0 &&
+                  <button className="btn-primary">Buy Now</button>
+                }
             </div>
           </div>
         </div>

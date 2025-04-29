@@ -1,6 +1,6 @@
 import { doc, getDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react"
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import myContext from "../../context/Data/MyContext";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,15 +65,13 @@ export default function SingleProductDetail() {
     }
   };
 
-  // using 'location' to go back to shop page when clicked on 'go back' button
-  const location = useLocation();
-  const category = location.state?.category;
+  const navigate = useNavigate();
 
   return (
     <section className="single-product-detail">
       <div className="container">
         <div className="btn-wrap">
-          <Link to={`/shop?category=${category}`} className="btn-secondary back-btn"><IoMdArrowBack />Go Back</Link>
+          <button onClick={() => navigate(-1)} className="btn-secondary back-btn"><IoMdArrowBack />Go Back</button>
         </div>
         {loading && (
           <div className="loader-wrap">
@@ -88,7 +86,7 @@ export default function SingleProductDetail() {
             </figure>
             <div className="product-info">
               <h3>{product.title}</h3>
-              <p>{product.price} $</p>
+              <p className="price">{product.price} $</p>
               <div className="description">
                 <h6>About this product:</h6>
                 <p>{product.description}</p>
